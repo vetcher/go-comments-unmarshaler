@@ -1,0 +1,6 @@
+.idea
+*.~m2
+bin
+
+.vscode
+.trash-conf
