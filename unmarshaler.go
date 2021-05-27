@@ -137,6 +137,30 @@ func (p *pkgVisitor) collect(n ast.Node, currentPath string) {
 				}
 				findValueByPath(p.target, path, text)
 			}
+		case token.VAR, token.CONST:
+			n := len(node.Specs)
+			if n == 0 {
+				return
+			}
+			for i := range node.Specs {
+				ts, ok := node.Specs[i].(*ast.ValueSpec)
+				if !ok {
+					// impossible
+					continue
+				}
+				for _, name := range ts.Names {
+					path := currentPath + name.Name
+					var text string
+					// only one declaration in format: `const X, Y = 10, 15`
+					if n == 1 {
+						text = node.Doc.Text()
+					} else {
+						// multiple type declaration in one parentheses
+						text = ts.Doc.Text()
+					}
+					findValueByPath(p.target, path, text)
+				}
+			}
 		default:
 			// other not supported yet
 			return

@@ -15,3 +15,13 @@ type (
 	// F2 comment
 	F2 int
 )
+
+// And this comment of some variable
+var someVar = ""
+
+const (
+	// Docs of constants are also available
+	MyConst, My1Const = iota, iota
+	// Const 2 comment
+	My2Const F1 = 15
+)

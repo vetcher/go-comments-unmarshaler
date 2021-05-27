@@ -16,6 +16,10 @@ func TestUnmarshalPackage(t *testing.T) {
 		FetchNoComments string `comment:"Fetcher.FetchNoComments"`
 		F1              string `comment:"F1"`
 		F2              string `comment:"F2"`
+		VarComment      string `comment:"someVar"`
+		ConstComment    string `comment:"MyConst"`
+		Const1Comment   string `comment:"My1Const"`
+		Const2Comment   string `comment:"My2Const"`
 	}
 
 	type args struct {
@@ -41,6 +45,10 @@ func TestUnmarshalPackage(t *testing.T) {
 				FetchNoComments: "",
 				F1:              "F1 comment\n",
 				F2:              "F2 comment\n",
+				VarComment:      "And this comment of some variable\n",
+				ConstComment:    "Docs of constants are also available\n",
+				Const1Comment:   "Docs of constants are also available\n",
+				Const2Comment:   "Const 2 comment\n",
 			},
 		},
 	}
